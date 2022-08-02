@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>TinyGo Playground</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:"/>
+    <link rel="stylesheet" href="resources/bootstrap-4.3.1.min.css">
+    <link rel="stylesheet" href="simulator.css"/>
+    <link rel="stylesheet" href="dashboard.css"/>
+    <link rel="icon" type="image/png" href="resources/favicon-32x32.png" sizes="32x32"/>
+    <script src="simulator.js" defer></script>
+    <script src="dashboard.js" defer></script>
+    <script src="project.js" defer></script>
+    <script src="resources/jquery-3.3.1.slim.min.js" defer></script>
+    <script src="resources/popper-1.14.7.min.js" defer></script>
+    <script src="resources/bootstrap-4.3.1.min.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>TinyGo Playground</h1>
+      <div id="target" class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Console
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item active" href>Console</a>
+          <span id="target-loading" class="dropdown-item disabled">Loading...</span>
+        </div>
+      </div>
+      <button type="button" id="btn-flash" class="btn btn-secondary" disabled>Flash</button>
+      <button type="button" id="btn-about" class="btn btn-secondary" data-toggle="modal" data-target="#aboutModal">About</button>
+    </header>
+    <div id="middle">
+      <textarea id="input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" disabled>Loading...</textarea>
+      <div id="output">
+        <div id="schematic-buttons">
+          <button id="schematic-button-pause" class="codicon schematic-button" title="Pause/resume the simulation">&#xead1;</button>
+        </div>
+        <svg id="schematic">
+          <g id="schematic-wrapper" style="transform: translate(50%, 50%)">
+            <g id="schematic-parts"></g>
+            <g id="schematic-wires"></g>
+          </g>
+        </svg>
+        <div id="panels">
+          <div class="tabbar">
+            <span class="tab active" data-for="#terminal-box"><a>Terminal</a></span>
+            <span class="tab" data-for="#properties"><a>Properties</a></span>
+            <span class="tab" data-for="#add"><a>Add</a></span>
+          </div>
+          <div class="tabcontent active" id="terminal-box">
+            <textarea id="terminal" readonly></textarea>
+          </div>
+          <div class="tabcontent" id="properties">
+            <div class="content"></div>
+          </div>
+          <div class="tabcontent" id="add">
+            Loading...
+          </div>
+        </div>
+        <div id="schematic-tooltip"></div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="aboutModalTitle">About TinyGo Playground</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              The TinyGo Playground is a service provided by the TinyGo project
+              to compile and run small code samples directly in the browser. It
+              has been heavily inspired by the <a
+              href="https://play.golang.org/">Go Playground</a> but differs in
+              some significant ways:
+            </p>
+
+            <ul>
+              <li>
+                We use the <a href="https://github.com/tinygo-org/tinygo">TinyGo
+                compiler</a> instead of the main Go compiler.
+              </li>
+              <li>
+                Instead of running code on the server, code is compiled to <a
+                href="https://webassembly.org/">WebAssembly</a> and runs
+                directly in the browser.
+              </li>
+              <li>
+                It can simulate a few popular boards directly in the browser.
+                However, please note that this is a simulation which can differ
+                in behavior from how the program will run on the actual device.
+              </li>
+              <li>
+                Boards that support drag-and-drop programming can be flashed
+                directly using the Flash button.
+              </li>
+            </ul>
+
+            <p>
+              For more information, visit <a
+              href="https://tinygo.org/">tinygo.org</a>.
+            </p>
+
+            <p>
+              Source code of the playground: <a
+              href="https://github.com/tinygo-org/playground">github.com/tinygo-org/playground</a>.
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
